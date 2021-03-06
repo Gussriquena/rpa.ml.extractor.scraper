@@ -1,9 +1,11 @@
 # rpa.ml.extractor
 Java RPA to extract 'mercado livre' product prices 
 
+
 ### TODO
  - Levantar requisitos
- - Modelar fluxo
+ - Modelar fluxo de usuario
+ - Modelar Fluxo Tecnico
  - Mapear URLs
  - Mapear elementos
  - criar projeto Java
