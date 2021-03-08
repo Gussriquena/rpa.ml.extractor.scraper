@@ -20,7 +20,7 @@ public enum PageEnum {
 		this.value = description;
 	}
 	
-	private String getValue() {
+	public String getValue() {
 		return value;
 	}
 	
