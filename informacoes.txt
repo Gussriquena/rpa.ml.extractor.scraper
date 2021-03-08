@@ -1,0 +1,11 @@
+
+https://www.mercadolivre.com.br/
+https://lista.mercadolivre.com.br/xiaomi-redmi-note-9-pro
+
+item da lista
+
+//li[@class="ui-search-layout__item"]
+
+link de cada item 
+
+//li[@class="ui-search-layout__item"]//a[1][@class="ui-search-link"]

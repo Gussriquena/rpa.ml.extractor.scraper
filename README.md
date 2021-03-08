@@ -1,6 +1,7 @@
 # rpa.ml.extractor
-Java RPA to extract 'mercado livre' product prices 
+RPA em java para extrair preços de produtos no Mercado Livre
 
+Obs: 
 
 ### TODO
  - Levantar requisitos
