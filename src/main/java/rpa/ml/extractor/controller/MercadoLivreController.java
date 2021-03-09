@@ -19,7 +19,11 @@ public class MercadoLivreController {
 	public void initFlow() {
 
 		List<Product> products = loadProducts();
-		createProductSearch(products);
+		products = createProductSearch(products);
+		
+		for (Product product : products) {
+			log.info(product.getName() + " " + product.getPrice() + " " + product.getSalesAmount());
+		}
 
 	}
 
@@ -31,7 +35,7 @@ public class MercadoLivreController {
 		return products;
 	}
 
-	private void createProductSearch(List<Product> products) {
+	private List<Product> createProductSearch(List<Product> products) {
 		try {
 			for (Product product : products) {
 				String urlSearch = PageEnum.URL_ML_SEARCH.getValue() + product.getName().replaceAll(" ", "-");
@@ -46,17 +50,16 @@ public class MercadoLivreController {
 					String salesAmount = document.select(".ui-pdp-header").select(".ui-pdp-subtitle").first().text();
 					
 					if (salesAmount.contains("vendido") || salesAmount.contains("vendidos")) {
-						String priceValue = document.select(".ui-pdp-price__second-line").select(".price-tag-fraction").first().text();
+						String price = document.select(".ui-pdp-price__second-line").select(".price-tag-fraction").first().text();
 						salesAmount = salesAmount.replaceAll("\\D", "");
-						log.info("preço: " + priceValue + " | " + salesAmount + " vendas");
+						products.add(new Product(1, product.getName(), price, salesAmount));
 					}
 				}
-				
-				log.info(linksSearchPage.size());
-				
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
+		
+		return products;
 	}
 }
