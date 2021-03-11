@@ -4,18 +4,14 @@ public class Product {
 	
 	private int id;
 	private String name;
-	private String salesAmount;
-	private String price;
 	
 	public Product() {
 		
 	}
 	
-	public Product(int id, String name, String salesAmount, String price) {
+	public Product(int id, String name) {
 		this.id = id;
 		this.name = name;
-		this.salesAmount = salesAmount;
-		this.price = price;
 	}
 
 	public int getId() {
@@ -34,25 +30,9 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getSalesAmount() {
-		return salesAmount;
-	}
-
-	public void setSalesAmount(String salesAmount) {
-		this.salesAmount = salesAmount;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-	
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", salesAmount=" + salesAmount + ", price=" + price + "]";
+		return "Product [id=" + id + ", name=" + name + "]";
 	}
  
 }
