@@ -2,6 +2,9 @@ package rpa.ml.extractor.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,10 +14,12 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import rpa.ml.extractor.constants.PageEnum;
 import rpa.ml.extractor.model.Product;
+import rpa.ml.extractor.model.ProductOutput;
 
 public class ExcelController {
 
@@ -36,7 +41,7 @@ public class ExcelController {
 				
 				while(cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
-					if (cell.getCellType() == CellType.STRING) {
+					if (cell.getCellType() == CellType.STRING && !cell.getStringCellValue().contains("PRODUTO_NOME")) {
 						product.add(new Product(row.getRowNum(), cell.getStringCellValue()));
 					}
 				}
@@ -49,16 +54,40 @@ public class ExcelController {
 		return product;
 	}
 	
-	public void writeOutputExcel() {
+	public void writeOutputExcel(List<ProductOutput> producstOutput) {
 		try {
 			XSSFWorkbook workbook = new XSSFWorkbook();
+			XSSFSheet sheet = workbook.createSheet("All products");
+			
+			int rowNumber = 0;
+			for (ProductOutput product : producstOutput) {
+				Row row = sheet.createRow(rowNumber++);
+				
+				Cell cell = row.createCell(0);
+				cell.setCellValue(product.getName());
+				
+				cell = row.createCell(1);
+				cell.setCellValue(product.getPrice().toString());
+				
+				cell = row.createCell(2);
+				cell.setCellValue(product.getSalesAmount());
+			}
+			
+			FileOutputStream outputStream = new FileOutputStream(PageEnum.EXCEL_PRODUCTS_OUTPUT.getValue() + "products_output.xlsx");
+			workbook.write(outputStream);
+			workbook.close();
+			
+		} catch (FileNotFoundException e) {
+			log.error(e.getMessage());
+		} catch (IOException e) {
+			log.error(e.getMessage());
 		} catch (Exception e) {
-			// TODO: handle exception
+			log.error(e.getMessage());
 		}
 	}
 	
 	private String findExcel() {
-		String filePath = PageEnum.EXCEL_PRODUTOS_INPUT.getValue();
+		String filePath = PageEnum.EXCEL_PRODUCTS_INPUT.getValue();
 		
 		try {
 			File filesInput = new File(filePath);

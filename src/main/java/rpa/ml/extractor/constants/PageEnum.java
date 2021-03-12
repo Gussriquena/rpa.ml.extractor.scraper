@@ -15,8 +15,8 @@ public enum PageEnum {
 	//XPATH_PRODUCT_PAGE_PRICE("(//div[@class='ui-pdp-price__second-line']/span/span[@class='price-tag-fraction'])[1]"),
 	//XPATH_PRODUCT_PAGE_AMOUNT("//div[@class='ui-pdp-header']/div/span[@class='ui-pdp-subtitle']"),
 	
-	EXCEL_PRODUTOS_INPUT(ConfigReader.read("excel.produtos.entrada")),
-	EXCEL_PRODUTOS_OUTPUT(ConfigReader.read("excel.produtos.saida"));
+	EXCEL_PRODUCTS_INPUT(ConfigReader.read("excel.produtos.entrada")),
+	EXCEL_PRODUCTS_OUTPUT(ConfigReader.read("excel.produtos.saida"));
 	
 	private String value;
 	

@@ -26,7 +26,7 @@ public class MercadoLivreController {
 		
 		if (productsInput.size() != 0) {
 			productsOutput = collectProductsData(productsInput);
-			
+			excelController.writeOutputExcel(productsOutput);
 		} else {
 			log.warn("No products found for search!");
 		}
