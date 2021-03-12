@@ -27,6 +27,7 @@ public class MercadoLivreController {
 		if (productsInput.size() != 0) {
 			productsOutput = collectProductsData(productsInput);
 			excelController.writeOutputExcel(productsOutput);
+			log.info("Process ended with sucess");
 		} else {
 			log.warn("No products found for search!");
 		}
@@ -65,8 +66,6 @@ public class MercadoLivreController {
 					}
 				}
 			}
-			
-			log.info("Process ended");
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}

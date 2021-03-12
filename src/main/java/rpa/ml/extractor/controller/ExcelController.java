@@ -47,6 +47,10 @@ public class ExcelController {
 				}
  			}
 			
+		} catch (FileNotFoundException e) {
+			log.error(e.getMessage());
+		} catch (IOException e) {
+			log.error(e.getMessage());
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
