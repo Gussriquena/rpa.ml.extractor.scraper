@@ -60,9 +60,14 @@ public class MercadoLivreController {
 								.first()
 								.text();
 						
+						String productName = document.select(".ui-pdp-title")
+								.first()
+								.text();
+						
 						salesAmount = salesAmount.replaceAll("\\D", "");
-						productOutput.add(new ProductOutput(product.getName(), new BigDecimal(price), Integer.parseInt(salesAmount)));
-						log.info(product.getName() + " " + price + " " + salesAmount);
+						productOutput.add(new ProductOutput(productName, new BigDecimal(price), Integer.parseInt(salesAmount), urlSearch));
+					
+						log.info(productName + " - " + price + " - " + salesAmount + " - " + urlSearch);
 					}
 				}
 			}

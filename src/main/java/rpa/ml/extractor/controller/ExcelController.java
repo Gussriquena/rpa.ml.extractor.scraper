@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -77,9 +79,15 @@ public class ExcelController {
 				cell.setCellValue(product.getSalesAmount());
 			}
 			
-			FileOutputStream outputStream = new FileOutputStream(PageEnum.EXCEL_PRODUCTS_OUTPUT.getValue() + "products_output.xlsx");
+			String dateOutput = new SimpleDateFormat("yyyy-MM-dd_HH-mm").format(new Date());
+			String outputFileName = PageEnum.EXCEL_PRODUCTS_OUTPUT.getValue() + "products_output" + dateOutput + ".xlsx";
+			
+			log.info(outputFileName);
+			FileOutputStream outputStream = new FileOutputStream(outputFileName);
 			workbook.write(outputStream);
 			workbook.close();
+			
+			log.info("Output data on: " + outputFileName);
 			
 		} catch (FileNotFoundException e) {
 			log.error(e.getMessage());
