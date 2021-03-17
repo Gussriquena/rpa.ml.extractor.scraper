@@ -5,6 +5,9 @@ versão com excel completa, sem métricas
 
 Obs: alterar nas configurações o caminho dos arquivos de entrada e saída
 
+### TODO
+ - mover arquivos entre as pastas
+
 ### DONE
  - Levantar requisitos
  - Modelar fluxo de usuario
