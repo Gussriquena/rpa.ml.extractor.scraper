@@ -49,6 +49,8 @@ public class ExcelController {
 				}
  			}
 			
+			fileWorkbook.close();
+			
 		} catch (FileNotFoundException e) {
 			log.error(e.getMessage());
 		} catch (IOException e) {
