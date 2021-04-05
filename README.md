@@ -5,6 +5,10 @@ versão com excel completa, sem métricas
 
 Obs: alterar nas configurações o caminho dos arquivos de entrada e saída
 
+ - Arquivos de exemplo: resources\project
+ - Colocar a pasta ml.extractor em c:\Arquivos
+ - Ou colocar em outro lugar e alterar em config.properties
+
 ### TODO
  - mover arquivos entre as pastas
 
